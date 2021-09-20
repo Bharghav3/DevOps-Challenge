@@ -13,10 +13,10 @@ b)	Then ran the Docker compose command,
 
 I have used the below main.tf file to provision our infrastructure with Terraform.
 
-    Prerequisites:
-      •	an AWS account
-      •	a SSH key-pair in AWS
-      •	AWS access tokens set in the environment as AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+Prerequisites:
+•	an AWS account
+•	a SSH key-pair in AWS
+•	AWS access tokens set in the environment as AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 
 
             # AWS resources are created in Singapore.
@@ -142,39 +142,39 @@ I have used the below main.tf file to provision our infrastructure with Terrafor
 
 a)	In Dockerfile,
 
-1)	“\” Backward slash missing in Install Dependencies 
-      # Install dependencies
-          RUN apt-get update && apt-get install -y \
-              build-essential \
-              libpng-dev \
-              libjpeg62-turbo-dev \
-              libfreetype6-dev \
-              locales **\**
-              zip \
+      1)	“\” Backward slash missing in Install Dependencies 
+                  # Install dependencies
+                    RUN apt-get update && apt-get install -y \
+                          build-essential \
+                          libpng-dev \
+                          libjpeg62-turbo-dev \
+                          libfreetype6-dev \
+                          locales **\**
+                          zip \
 
-2)	Replaced “DO” with “RUN” in # Add user for laravel application
-        # Add user for laravel application
-        RUN groupadd -g 1000 www
-        **RUN** useradd -u 1000 -ms /bin/bash -g www www
+      2)	Replaced “DO” with “RUN” in # Add user for laravel application
+                    # Add user for laravel application
+                    RUN groupadd -g 1000 www
+                    **RUN** useradd -u 1000 -ms /bin/bash -g www www
 
-3)	Changed the user from www2 to www in Change current user field.
+      3)	Changed the user from www2 to www in Change current user field.
 
-        # Change current user to www
-        USER **www**
+                    # Change current user to www
+                    USER **www**
 
 b)	In Docker-Compse.yml file,
 
-1)	Changed image name from ngnx to nginx.
-      #Nginx Service
-        webserver:
-          image: **nginx**:alpine
+      1)	Changed image name from ngnx to nginx.
+                  #Nginx Service
+                    webserver:
+                      image: **nginx**:alpine
 
-2)	Changed port from 8 to 80.
-       ports:
-      - "**80**:80"
-      - "443:443"
+      2)	Changed port from 8 to 80.
+                   ports:
+                  - "**80**:80"
+                  - "443:443"
 
-3)	Changed network of Web Container from server-network to app-network
-      networks:
-        - **app**-network
+      3)	Changed network of Web Container from server-network to app-network
+                  networks:
+                    - **app**-network
 
