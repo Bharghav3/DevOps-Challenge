@@ -5,7 +5,7 @@ services:
   app:
     build:
       context: ./app
-      dockerfile: Dockerfile
+      dockerfile: /root/DevOps-Challenge/Dockerfile
     image: interview-assessment/php
     container_name: app
     restart: unless-stopped
@@ -22,18 +22,18 @@ services:
 
   #Nginx Service
   webserver:
-    image: ngnx:alpine
+    image: nginx:alpine
     container_name: webserver
     restart: unless-stopped
     tty: true
     ports:
-      - "8:80"
+      - "80:80"
       - "443:443"
     volumes:
       - ./app/public:/var/www/public
       - ./app.conf:/etc/nginx/conf.d/app.conf
     networks:
-      - server-network
+      - app-network
 
 #Docker Networks
 networks:
